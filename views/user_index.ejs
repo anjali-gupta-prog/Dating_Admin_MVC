@@ -1,0 +1,115 @@
+<%- include('header.ejs'); %> 
+ 
+<div class="page-content">
+
+                <!-- <nav class="page-breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="#">Tables</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Data Table</li>
+                    </ol>
+                </nav> -->
+
+                <div class="row">
+                    <div class="col-md-12 grid-margin stretch-card">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <h6 class="card-title mb-0">See Users</h6>
+                                    <!-- <button class="btn btn-primary btn-icon-text mb-2 mb-md-0" onclick="location.href='/add'">Add Testimonials</button> -->
+                                </div>
+                                
+                                <div class="table-responsive">
+                                    <table id="dataTableExample" class="table table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>Serial No.</th>
+                                                <th>Name</th>
+                                                <th>Email</th>
+                                                <th>PhoneNo</th>
+                                                <th>Gender</th>
+                                                <!-- <th>Location</th> -->
+                                                <th>DOB</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <% i=1 %>
+                                            <% users.forEach(function(user){ %>
+                                                <%if(user.active_status == 1) { %>
+                                                  <%  activate_status = "<input type='button' value='Deactivate' onclick='deactivate("+user.userId+")' class='btn btn-sm btn-primary'>" %>
+                                                <% }else{ %>
+                                                   <% activate_status = "<input type='button' value='Activate' onclick='activate("+user.userId+")' class='btn btn-sm btn-primary'>" %> 
+                                                <% } %>
+                                                     
+                                                <tr>
+                                                    <td><%=i %></td>
+                                                    <td><%= user.fullName %></td>
+                                                    <td><%= user.email%></td>
+                                                    <td><%= user.phoneNo %></td>
+                                                    <td><%= user.gender%></td>
+                                                    <!-- <td><%= user.location %></td> -->
+                                                    <td><%= user.DOB %></td>
+                                                    <td>
+                                                        <%-activate_status %>
+                                                    </td>
+                                                </tr>
+                                                <% i=i+1 %>
+                                            <% }); %> 
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            
+<%- include('footer.ejs'); %>
+<script>
+    function activate(id)
+    {   
+        // alert(id);
+             var task = id;
+          
+           $.ajax({  
+               url:'/activate?userId='+task+' ',  
+               method:'GET',  
+               dataType:'json',  
+               data:{'UserId':task},  
+               success:function(response){  
+                   if(response.msg == 'Your account is successfully activated'){  
+                   alert('Your account is successfully activated'); 
+                   }else{  
+                       alert('Some error occurred try again');  
+                   }  
+               },  
+               error:function(response){  
+                   alert('server error occured')  
+               }  
+           });  
+        
+    }      
+    function deactivate(id){
+        // alert(id);
+             var task = id;
+            //  alert(task);
+           $.ajax({  
+               url:'/deactivate?userId='+task+' ',   
+               method:'GET',  
+               dataType:'json',  
+               data:{'UserId':task},  
+               success:function(response){  
+                   if(response.msg == 'Your account is successfully deactivated'){  
+                   alert('Your account is successfully deactivated'); 
+                   }else{  
+                       alert('Some error occurred try again');  
+                   }  
+               },  
+               error:function(response){  
+                   alert('server error occured')  
+               }  
+           });  
+       
+    }
+</script>  

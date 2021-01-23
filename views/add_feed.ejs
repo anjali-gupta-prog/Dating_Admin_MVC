@@ -1,0 +1,121 @@
+<%- include('header.ejs'); %> 
+          <div class="page-content">
+    <div class="row justify-content-center">
+        <div class="col-md-12 stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Add feed</h4>
+                    <% if (typeof error !== 'undefined' && error.length > 0) { %>
+                        <% for (var i = 0; i < error.length; i++) { %>
+                            <div class="alert alert-warning"> <%= error[i].msg %></div>
+                         <% } %>   
+                    <% } %>
+                    <form class="cmxform" id="signupForm" enctype="multipart/form-data" method="post" action="/save" onsubmit="return validateForm()">
+                        <fieldset>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label for="title">Title</label>
+                                        <input id="title" class="form-control" name="title" type="text" placeholder="Enter title" required>
+                                    </div>
+                                   
+                                </div>
+                            </div>
+                            <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="hashtag">Hashtag</label>
+                                    <input id="hashtag" class="form-control" name="hashtag" type="text" placeholder="Enter hashtag" required>
+                                </div>
+                            </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label for="describe">Description</label>
+                                            <textarea id="describe" class="form-control" name="details"  type="text" rows="15" cols="30"  ></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="image" class="col-md-3 control-label">Image</label>
+                                <div class="col-sm-9">
+                                    <input class="form-control" type="file" name="image" id="image" accept="" />
+                                </div>
+                            </div> 
+                            <div class="form-group">
+                                <label for="video" class="col-md-3 control-label">Video</label>
+                                <div class="col-sm-9">
+                                    <input class="form-control" type="file" name="video" id="video" accept="" />
+                                </div>
+                            </div>                           
+                            <div class="form-group">
+                                <!-- Button -->                                       
+                                <div class="col-md-offset-3 col-md-9">
+                                    <input class="btn btn-primary" type="submit" value="Submit">
+                                </div>
+                            </div>  
+                            
+                            
+                        </fieldset>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<%- include('footer.ejs'); %>
+
+
+
+<script type="text/javascript">
+function validateForm(){    
+    $("#signupForm1").validate({
+     rules: {
+        title: {
+          required: true,
+          minlength: 3
+        },
+        hashtag: {
+          required: true,
+          minlength: 3
+        },
+        details: {
+          required: true,
+          minlength: 5,
+        },
+        image : {
+            required : true,
+        }
+      },
+      messages: {
+        title: {
+          required: "Please enter a Title",
+          minlength: "Title must consist of at least 3 characters"
+        },
+        hashtag: {
+          required: "Please provide a hashtag",
+          minlength: "Your Hashtag must be at least 3 characters long"
+        },
+        details: {
+          required: "Please provide a description",
+          minlength: "Your password must be at least 5 characters long", 
+        },
+        image:{
+            required: "Please Choose image"
+        }
+      },
+      errorPlacement: function(label, element) {
+        label.addClass('mt-2 text-danger');
+        label.insertAfter(element);
+      },
+      highlight: function(element, errorClass) {
+        $(element).parent().addClass('has-danger')
+        $(element).addClass('form-control-danger')
+      }
+    });
+  
+}
+</script>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Shiv Infotech</title>
+
+    <link rel="stylesheet" href="assets/vendors/core/core.css">
+
+    <link rel="stylesheet" href="assets/vendors/bootstrap-datepicker/bootstrap-datepicker.min.css">
+
+    <link rel="stylesheet" href="assets/css/iconfont.css">
+
+    <link rel="stylesheet" href="assets/scss/style.css">
+    <link rel="stylesheet" href="assets/css/font-awesome.min.css">
+
+    <link rel="shortcut icon" href="assets/images/favicon.png" />
+
+</head>
+
+<body>
+    <div class="main-wrapper">
+        <div class="page-wrapper">
+
+          <div class="page-content">
+    <div class="row justify-content-center">
+        <div class="col-md-6 stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Login</h4>
+                    <% if (typeof error !== 'undefined' && error.length > 0) { %>
+                        <% for (var i = 0; i < error.length; i++) { %>
+                            <div class="alert alert-warning"> <%= error[i].msg %></div>
+                         <% } %>   
+                    <% } %>
+                    <form class="cmxform" id="signupForm" method="post" action="/login" novalidate="novalidate">
+                        <fieldset>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <label for="username">Username</label>
+                                        <input id="username" class="form-control" name="username" type="text" placeholder="Enter Your Username" required>
+                                    </div>
+                                    
+                                </div>
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <label for="password">Password</label>
+                                        <input id="password" class="form-control" name="password" type="password" placeholder="Enter Your Password" required>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                            <input class="btn btn-primary" type="submit" value="Submit">
+                        </fieldset>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<%- include('footer.ejs'); %>

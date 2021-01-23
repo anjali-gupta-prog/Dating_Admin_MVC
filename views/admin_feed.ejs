@@ -1,0 +1,107 @@
+<%- include('header.ejs'); %> 
+ 
+<div class="page-content">
+
+                <!-- <nav class="page-breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="#">Tables</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Data Table</li>
+                    </ol>
+                </nav> -->
+
+                <div class="row">
+                    <div class="col-md-12 grid-margin stretch-card">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <h6 class="card-title mb-0">See Users</h6>
+                                    <button class="btn btn-primary btn-icon-text mb-2 mb-md-0" onclick="location.href='/addfeed'">Add Feed</button>
+                                    <!-- <button class="btn btn-primary btn-icon-text mb-2 mb-md-0" onclick="location.href='/add'">Add Testimonials</button> -->
+                                </div>
+                                
+                                <div class="table-responsive">
+                                    <table id="dataTableExample" class="table table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>Serial No.</th>
+                                                <th>Title</th>
+                                                <th>Hashtag</th>
+                                                <th>Image</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <% i=1 %>
+                                            <% users.forEach(function(user){ %>
+    
+                                                     
+                                                <tr>
+                                                    <td><%=i %></td>
+                                                    <td><%= user.title %></td>
+                                                    <td><%= user.hashtag%></td>
+                                                    <td><img src="http://localhost:8080/images/<%= user.image%>" height="100px" width="200px"></td>
+                                                    <td>
+                                                        <a href="editfeed?feedId=<%= user.id %>" class="btn btn-sm btn-primary">Edit</a>
+                                                        <a href="deletefeed?feedId=<%= user.id %>" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure to delete this record ?');">Delete</a>  
+                                                    </td>
+                                                </tr>
+                                                <% i=i+1 %>
+                                            <% }); %> 
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            
+<%- include('footer.ejs'); %>
+<script>
+    // function activate(id)
+    // {   
+    //     // alert(id);
+    //          var task = id;
+    //         //  alert(task);
+    //        $.ajax({  
+    //            url:'/activate?userId='+task+' ',  
+    //            method:'GET',  
+    //            dataType:'json',  
+    //            data:{'UserId':task},  
+    //            success:function(response){  
+    //                if(response.msg == 'Your account is successfully activated'){  
+    //                alert('Your account is successfully activated'); 
+    //                }else{  
+    //                    alert('Some error occurred try again');  
+    //                }  
+    //            },  
+    //            error:function(response){  
+    //                alert('server error occured')  
+    //            }  
+    //        });  
+        
+    // }      
+    // function deactivate(id){
+    //     // alert(id);
+    //          var task = id;
+    //         //  alert(task);
+    //        $.ajax({  
+    //            url:'/deactivate?userId='+task+' ',   
+    //            method:'GET',  
+    //            dataType:'json',  
+    //            data:{'UserId':task},  
+    //            success:function(response){  
+    //                if(response.msg == 'Your account is successfully deactivated'){  
+    //                alert('Your account is successfully deactivated'); 
+    //                }else{  
+    //                    alert('Some error occurred try again');  
+    //                }  
+    //            },  
+    //            error:function(response){  
+    //                alert('server error occured')  
+    //            }  
+    //        });  
+       
+    // }
+</script>  
